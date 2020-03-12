@@ -589,7 +589,11 @@ scripts: scripts_basic include/config/auto.conf include/config/tristate.conf \
 
 # Objects we will link into vmlinux / subdirs we need to visit
 init-y		:= init/
+<<<<<<< HEAD
 drivers-y	:= drivers/ sound/ firmware/ techpack/
+=======
+drivers-y	:= drivers/ sound/ firmware/ coretech/ techpack/
+>>>>>>> 35760d3d76b39... treewide: cleanup and fix warnings for clang 11
 net-y		:= net/
 libs-y		:= lib/
 core-y		:= usr/
@@ -763,6 +767,8 @@ KBUILD_CFLAGS += $(call cc-disable-warning, tautological-compare)
 # source of a reference will be _MergedGlobals and not on of the whitelisted names.
 # See modpost pattern 2
 KBUILD_CFLAGS += $(call cc-option, -mno-global-merge,)
+KBUILD_CFLAGS += $(call cc-disable-warning, pointer-to-enum-cast)
+KBUILD_CFLAGS += $(call cc-disable-warning, void-pointer-to-int-cast)
 KBUILD_CFLAGS += $(call cc-option, -fcatch-undefined-behavior)
 else
 
